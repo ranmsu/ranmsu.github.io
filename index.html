@@ -1,0 +1,58 @@
+<!DOCTYPE html>  
+<html lang="zh">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>随机图片展示</title>  
+    <style>  
+        body {  
+            font-family: Arial, sans-serif;  
+            text-align: center;  
+            margin: 20px;  
+        }  
+        img {  
+            max-width: 100%;  
+            height: auto;  
+            border: 1px solid #ccc;  
+            border-radius: 5px;  
+        }  
+        .info {  
+            margin-top: 15px;  
+        }  
+    </style>  
+</head>  
+<body>  
+    <h1>随机图片展示</h1>  
+    <img id="randomImage" src="" alt="随机图片" style="display: none;">  
+    <div class="info" id="info" style="display: none;">  
+        <p><strong>类型:</strong> <span id="type"></span></p>  
+        <p><strong>大小:</strong> <span id="size"></span></p>  
+        <p><strong>R18:</strong> <span id="r18"></span></p>  
+    </div>  
+    <button id="loadImage">加载随机图片</button>  
+
+    <script>  
+        document.getElementById('loadImage').addEventListener('click', function() {  
+            fetch('https://api.hikarinagi.com/random/v2')  
+                .then(response => response.json())  
+                .then(data => {  
+                    const image = document.getElementById('randomImage');  
+                    const info = document.getElementById('info');  
+                    const type = document.getElementById('type');  
+                    const size = document.getElementById('size');  
+                    const r18 = document.getElementById('r18');  
+
+                    image.src = data.url;  
+                    image.style.display = 'block';  
+                    info.style.display = 'block';  
+                    type.textContent = data.type;  
+                    size.textContent = data.size;  
+                    r18.textContent = data.r18 ? '是' : '否';  
+                })  
+                .catch(error => {  
+                    console.error('获取图片失败:', error);  
+                });  
+        });  
+    </script>  
+</body>  
+</html>  
