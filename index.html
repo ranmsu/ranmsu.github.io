@@ -3,49 +3,34 @@
 <head>  
     <meta charset="UTF-8">  
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>随机原神图片</title>  
+    <title>随机图片展示</title>  
     <style>  
         body {  
-            display: flex;  
-            justify-content: center;  
-            align-items: center;  
-            flex-direction: column;  
-            height: 100vh;  
-            background-color: #f0f0f0;  
+            font-family: Arial, sans-serif;  
+            text-align: center;  
+            margin: 20px;  
         }  
         img {  
             max-width: 100%;  
             height: auto;  
-            margin: 20px 0;  
+            border: 1px solid #ccc;  
+            border-radius: 5px;  
         }  
-        button {  
-            padding: 10px 15px;  
-            font-size: 16px;  
+        .info {  
+            margin-top: 15px;  
         }  
     </style>  
 </head>  
 <body>  
-    <h1>获取随机原神图片</h1>  
-    <button id="getImage">获取图片</button>  
-    <img id="image" src="" alt="随机图片将显示在这里" style="display: none;" />  
-
-    <script>  
-        document.getElementById('getImage').onclick = function() {  
-            fetch('https://api.hikarinagi.com/random/v2/?tag=原神&num=1&r-18=true')  
-                .then(response => response.json())  
-                .then(data => {  
-                    if (data.success) {  
-                        const img = document.getElementById('image');  
-                        img.src = data.data[0].url; // 更新图片链接  
-                        img.style.display = 'block'; // 显示图片  
-                    } else {  
-                        alert('获取图片失败，请重试。');  
-                    }  
-                })  
-                .catch(error => {  
-                    console.error('发生错误：', error);  
-                });  
-        };  
-    </script>  
+    <h1>随机图片展示</h1>  
+    <img src="https://i.pximg.net/img-original/img/2023/07/27/11/38/55/105795044_p0.jpg" alt="随机图片">  
+    <div class="info">  
+        <p><strong>点赞数:</strong> 15362</p>  
+        <p><strong>操作:</strong></p>  
+        <ul>  
+            <li><strong>删除:</strong> 删除数据中指定pid的作品</li>  
+            <li><strong>添加标签:</strong> 给数据中指定pid的作品添加标签</li>  
+        </ul>  
+    </div>  
 </body>  
 </html>  
