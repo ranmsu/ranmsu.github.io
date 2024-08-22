@@ -1,0 +1,51 @@
+<!DOCTYPE html>  
+<html lang="zh">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>随机原神图片</title>  
+    <style>  
+        body {  
+            display: flex;  
+            justify-content: center;  
+            align-items: center;  
+            flex-direction: column;  
+            height: 100vh;  
+            background-color: #f0f0f0;  
+        }  
+        img {  
+            max-width: 100%;  
+            height: auto;  
+            margin: 20px 0;  
+        }  
+        button {  
+            padding: 10px 15px;  
+            font-size: 16px;  
+        }  
+    </style>  
+</head>  
+<body>  
+    <h1>获取随机原神图片</h1>  
+    <button id="getImage">获取图片</button>  
+    <img id="image" src="" alt="随机图片将显示在这里" style="display: none;" />  
+
+    <script>  
+        document.getElementById('getImage').onclick = function() {  
+            fetch('https://api.hikarinagi.com/random/v2/?tag=原神&num=1&r-18=true')  
+                .then(response => response.json())  
+                .then(data => {  
+                    if (data.success) {  
+                        const img = document.getElementById('image');  
+                        img.src = data.data[0].url; // 更新图片链接  
+                        img.style.display = 'block'; // 显示图片  
+                    } else {  
+                        alert('获取图片失败，请重试。');  
+                    }  
+                })  
+                .catch(error => {  
+                    console.error('发生错误：', error);  
+                });  
+        };  
+    </script>  
+</body>  
+</html>  
